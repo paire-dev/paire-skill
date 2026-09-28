@@ -198,8 +198,13 @@ Head <short sha>, updated <YYYY-MM-DD>
 
 <Headline: one sentence, what is true after merge>
 
-**Problem.** <the problem the whole pull request solves, as a user saw it>
-**Fix.** <the design move, not the edit>
+### Problem
+
+<the problem the whole pull request solves, as a user saw it>
+
+### Fix
+
+<the design move, not the edit>
 
 ## Your concerns
 
