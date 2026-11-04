@@ -111,7 +111,7 @@ What qualifies: a bot finding marked resolved with no code change. A test that m
 
 | Column | Glyphs |
 | --- | --- |
-| Type | 👤 Product, 🧩 System, 🏗 Operational, 🤖 Execution |
+| Type | 👤 Product, ⚙️ System, 🏗 Operational, 🤖 Execution |
 | Risk | ☑️ Ok, ❗ Risky, 🚨 Breaking |
 | State | ✅ Verified, 🔍 Unverified, ✂️ Dropped, ⚠️ Unexpected, ❓ Suspected |
 | Consequence, Deep part only | 💥 irreversible, 📈 accumulates, 🌐 reach, ❌ no |
