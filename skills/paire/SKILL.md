@@ -20,6 +20,7 @@ The brief is a file, edited on every run, not a chat message. One file per PR at
 - **Decided rows are frozen.** The Deep part's Before and After are the record and never change. The Now cell is a rendering of that record and may be reworded. To change a decided row's meaning, add a new row and mark the old one `superseded by #N`. After a rebase, re-cite the line numbers; that is evidence moving, not a state change.
 - **The reader's lines are read-only.** Never rewrite a line the reader wrote or a box they ticked. A ticked question moves, with their note verbatim and today's date, from Questions to Decided as ✅ accepted. A question the reader answers with a concern becomes 💬 commented: on request, post their note as an inline PR comment on the effect's evidence lines, in their voice, and record the link. Decided is the acceptance record.
 - **Since last brief.** One block at the top on every update, replaced each run. 5 to 8 lines: new commits, state changes as `#7 🔍 Unverified → ✅ Verified`, threads opened or closed, questions answered, questions added. Only a glyph change is a state change. A consequence phrase changing on its own is not.
+- **No Risk column.** A file whose Effects table has no Risk column gets one on its next run. Adding it is a tag, not a state change.
 - **Old layout.** A file with no `## Deep` heading predates this layout. Rebuild it in this layout on its next run. Numbers, Decided lines, and every line the reader wrote survive. Evidence, root cause, Trust, and Map move into the Deep part. A row the rules below no longer count as an effect is struck through with `dropped, not an effect`. Write `layout updated` in Since last brief.
 
 ## Voice
@@ -92,6 +93,12 @@ What qualifies: a bot finding marked resolved with no code change. A test that m
 
 **Consequence.** A row is consequential if any one holds. Irreversible: deletes data, a schema change that cannot roll back, an external system, money. Accumulates: grows per event, request, or publish. Reach: users, paths, services, or cost the Ask did not name. Consequence sorts the table and gates the questions. It is not a column at the top. It shows there as a phrase of six words at most, after the state, naming the thing at stake: `🔍 Unverified, reaches every chart report`, `⚠️ Unexpected, deletes brand rows`, `✅ Verified, grows per publish`. Never the test's name. A row that passes no test carries the state alone. In the Deep part it is a glyph. Pick the strongest: 💥 irreversible over 📈 accumulates over 🌐 reach.
 
+**Risk.** Every row gets one, so the reader knows how hard to look. Risk is what is at stake if the row is wrong, not whether it is shown: a ✅ Verified row can still be 🚨 Breaking. Pick the strongest that holds.
+
+- 🚨 Breaking: something that works today stops working or must change, for a user, another system or a teammate. Removed or changed behaviour, an API, schema or config others rely on, or anything 💥 irreversible.
+- ❗ Risky: nothing breaks, but a mistake would matter. The row 📈 accumulates, 🌐 reaches past the Ask, or would fail without anyone noticing.
+- ☑️ Ok: additive and contained.
+
 **Order.** Rows that are not ✅ Verified come first, by consequence strength, and rows with no consequence close that group. Then the ✅ Verified rows, #1 first, then Type in legend order. Effect #1 is the one the pull request exists for and keeps that number; if it is divergent it leads the first group. If the headline and #1 disagree, one of them is wrong. Struck rows sort last. Flat list, no group headings. Numbers never change with the order.
 
 **Questions.** One per consequential row that is not ✅ Verified. One per unresolved review thread not already in Your concerns. One if the required check failed or never ran on the head SHA.
@@ -105,6 +112,7 @@ What qualifies: a bot finding marked resolved with no code change. A test that m
 | Column | Glyphs |
 | --- | --- |
 | Type | 👤 Product, 🧩 System, 🏗 Operational, 🤖 Execution |
+| Risk | ☑️ Ok, ❗ Risky, 🚨 Breaking |
 | State | ✅ Verified, 🔍 Unverified, ✂️ Dropped, ⚠️ Unexpected, ❓ Suspected |
 | Consequence, Deep part only | 💥 irreversible, 📈 accumulates, 🌐 reach, ❌ no |
 | Evidence, Deep part only | 👁 observed, 💭 inferred, ❓ unknown |
@@ -141,11 +149,11 @@ Do not write until step 7.
 
 3. **Write the Ask and the Problem.** Sources: the linked task or issue, every commit message in the range, the PR body. Never the transcript. Open the linked task if there is one. Set the body aside. On an update, keep both unless one of those sources changed the scope.
 4. **Find the one mechanism.** Read the two or three files the diff makes largest or newest. Write the root cause in one sentence. If you cannot, read more. On an update, revisit only if a changed file touches it.
-5. **List effects from the diff**, before rereading the author's claims. Then, if a transcript exists, scan it only for actions outside the repo with consequences, one 🤖 Execution row each. Nothing else comes from the transcript. Tag type, state, consequence, and evidence for each row. On an update, re-tag existing rows and add new ones.
+5. **List effects from the diff**, before rereading the author's claims. Then, if a transcript exists, scan it only for actions outside the repo with consequences, one 🤖 Execution row each. Nothing else comes from the transcript. Tag type, risk, state, consequence, and evidence for each row. On an update, re-tag existing rows and add new ones.
 6. **Reconcile.** Reread the PR body. Effects only one side names are findings. Classify every review thread: ✅ fixed in commit N, ❌ rejected with a reason, or ❓ resolved with no visible fix or reply. Note what you tripped over for Your concerns.
 7. **Write the Top part first.** Headline, Problem, Fix, concerns, Ask, the table in Order, Decisions, then the Questions from consequential rows that are not ✅ Verified, from unresolved threads, and from CI. Then write the Deep part from the same rows. On an update, edit in place per Living document and write Since last brief last, from the difference between the old file and the new.
-8. **Cut, then run the writing rules.** Above the Deep part, remove every path, line number, identifier, coined noun, and glyph other than Type, State, and Decided. Remove numbers that change nothing and sentences that restate. 15 words per sentence. Read the Top part as a new teammate on day one. Never cut a reader's line.
-9. **Finalize.** Do not reply until all hold: uncovered files 0; every Deep row has evidence with a confidence glyph; every Top row has a Deep row and the same state; every Now cell 15 words or fewer; prose above the table 8 lines or fewer; Decisions 3 or fewer; no row describes session activity; every consequential row that is not ✅ Verified has a question; every review thread classified; glyph plus label in every cell; writing rules run over the whole file. Fix, then check again.
+8. **Cut, then run the writing rules.** Above the Deep part, remove every path, line number, identifier, coined noun, and glyph other than Type, Risk, State, and Decided. Remove numbers that change nothing and sentences that restate. 15 words per sentence. Read the Top part as a new teammate on day one. Never cut a reader's line.
+9. **Finalize.** Do not reply until all hold: uncovered files 0; every Deep row has evidence with a confidence glyph; every Top row has a Deep row, the same state, and a Risk; every Now cell 15 words or fewer; prose above the table 8 lines or fewer; Decisions 3 or fewer; no row describes session activity; every consequential row that is not ✅ Verified has a question; every review thread classified; glyph plus label in every cell; writing rules run over the whole file. Fix, then check again.
 
 ## Flows and diagrams
 
@@ -214,10 +222,10 @@ Head <short sha>, updated <YYYY-MM-DD>
 
 Ask: <one plain sentence of what was requested>. From <task link | PR body, no task linked>.
 
-| # | Now | Type | State |
-| --- | --- | --- | --- |
-| 2 | <what is true now, stressing the difference, 15 words max> | 👤 Product | 🔍 Unverified, <consequence phrase> |
-| 1 | <the effect the pull request exists for> | 👤 Product | ✅ Verified |
+| # | Now | Type | Risk | State |
+| --- | --- | --- | --- | --- |
+| 2 | <what is true now, stressing the difference, 15 words max> | 👤 Product | ❗ Risky | 🔍 Unverified, <consequence phrase> |
+| 1 | <the effect the pull request exists for> | 👤 Product | ☑️ Ok | ✅ Verified |
 
 ## Decisions
 
